@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.audio.alsi101ru" name="Alsi101.ru" version="1.0" provider-name="Alsimexa">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.common.plugin.cache" version="0.9.1"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="alsi101ru.py">
+        <provides>audio</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Online radio 101.RU</summary>
+        <summary lang="ru">Онлайн радио 101.RU</summary>
+        <description lang="en">101.ru - it is a big entertainment portal, the main component is online radio.</description>
+        <description lang="ru">101.ru - это крупный развлекательный портал, основной составляющей которого остается онлайн радио.</description>
+    </extension>
+</addon>
