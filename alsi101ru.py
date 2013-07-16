@@ -85,12 +85,14 @@ def selectStation(stationNr):
     showMessage("selectStation",stationNr)
     #http://www.101.ru/play.m3u?uid=100&bit=1
     #uid = stationNr
-    #bit = 1 | 2
-    url = "/play.m3u?uid="+stationNr+"&bit=1"
+    #bit = 1 | 2  :  1-low quality | 2-high quality
+    url = "/play.m3u?uid="+stationNr+"&bit=2"
     #content = getHttpText(siteRoot+url)
     #content = getFileText("station100.htm")
     content = cache.cacheFunction(getHttpText,siteRoot+url)
     s1 = re.compile('{"comment":"(.+?)","file":"(.+?)"}', re.DOTALL).findall(content)
+    header1 = "User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64; rv:22.0) Gecko/20100101 Firefox/22.0"
+    header2 = "noshout=true"
     pList = xbmc.PlayList(xbmc.PLAYLIST_MUSIC)
     pList.clear()
     for comment,link in s1:
@@ -98,7 +100,7 @@ def selectStation(stationNr):
         #ITERATE STREAMS
         #item = xbmcgui.ListItem("[COLOR FFFFFF00] "+comment+" [/COLOR]")
         item = xbmcgui.ListItem(comment)
-        dirurl = link #pluginpathname+"?function=1&param="+channel
+        dirurl = link+"|"+header1 +"&" + header2
         #xbmcplugin.addDirectoryItem(handler, dirurl, item, False)
         pList.add(url=dirurl, listitem=item)
     xbmc.Player().play(pList)
